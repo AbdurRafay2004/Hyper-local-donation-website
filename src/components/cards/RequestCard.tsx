@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { NgoRequest, CATEGORIES } from '@/lib/supabase-types';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -84,7 +85,11 @@ export function RequestCard({ request, onPledge, showActions = true }: RequestCa
       </CardContent>
 
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link 
+          to={`/profile/${request.ngo_id}`} 
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          onClick={(e) => e.stopPropagation()}
+        >
           <Avatar className="h-7 w-7">
             <AvatarImage src={profile?.avatar_url || undefined} />
             <AvatarFallback className="bg-request/10 text-request text-xs">
@@ -92,12 +97,12 @@ export function RequestCard({ request, onPledge, showActions = true }: RequestCa
             </AvatarFallback>
           </Avatar>
           <div className="flex items-center gap-1">
-            <span className="text-sm font-medium">{profile?.organization_name || 'NGO'}</span>
+            <span className="text-sm font-medium hover:underline">{profile?.organization_name || 'NGO'}</span>
             {profile?.is_verified && (
               <BadgeCheck className="h-4 w-4 text-verified" />
             )}
           </div>
-        </div>
+        </Link>
         
         {showActions && onPledge && !isFulfilled && (
           <Button
