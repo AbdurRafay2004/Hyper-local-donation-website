@@ -209,3 +209,20 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
 }
+
+/* Accessibility Filters */
+.protanopia { 
+  filter: grayscale(0.5) sepia(0.8) hue-rotate(-50deg); 
+}
+
+.deuteranopia { 
+  filter: grayscale(0.5) sepia(0.7) hue-rotate(-60deg); 
+}
+
+.tritanopia { 
+  filter: grayscale(0.5) sepia(0.6) hue-rotate(90deg); 
+}
+
+.achromatopsia { 
+  filter: grayscale(1); 
+}
