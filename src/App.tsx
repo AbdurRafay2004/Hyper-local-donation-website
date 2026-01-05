@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { AccessibilityBtn } from "@/components/AccessibilityBtn";
+import { VoiceCommandButton } from "@/components/VoiceCommandButton";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <AccessibilityBtn />
+            <VoiceCommandButton />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
