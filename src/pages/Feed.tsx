@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Navbar } from '@/components/layout/Navbar';
@@ -17,16 +17,18 @@ import { toast } from 'sonner';
 export default function Feed() {
   const { user, profile, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   
   const [donations, setDonations] = useState<DonationListing[]>([]);
   const [requests, setRequests] = useState<NgoRequest[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [selectedRequest, setSelectedRequest] = useState<NgoRequest | null>(null);
   const [pledgeModalOpen, setPledgeModalOpen] = useState(false);
 
   const isNgo = profile?.role === 'ngo';
+  const currentTab = searchParams.get('tab') || (isNgo ? 'donations' : 'requests');
+  const categoryFilter = searchParams.get('category') || 'all';
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -143,11 +145,29 @@ export default function Feed() {
               <Input
                 placeholder="Search..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  if (e.target.value) {
+                    searchParams.set('search', e.target.value);
+                  } else {
+                    searchParams.delete('search');
+                  }
+                  setSearchParams(searchParams);
+                }}
                 className="pl-10"
               />
             </div>
-            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <Select
+              value={categoryFilter}
+              onValueChange={(value) => {
+                if (value === 'all') {
+                  searchParams.delete('category');
+                } else {
+                  searchParams.set('category', value);
+                }
+                setSearchParams(searchParams);
+              }}
+            >
               <SelectTrigger className="w-full sm:w-48">
                 <Filter className="h-4 w-4 mr-2" />
                 <SelectValue placeholder="Category" />
@@ -165,7 +185,14 @@ export default function Feed() {
         </div>
 
         {/* Tabs for both views */}
-        <Tabs defaultValue={isNgo ? 'donations' : 'requests'} className="space-y-6">
+        <Tabs
+          value={currentTab}
+          onValueChange={(value) => {
+            searchParams.set('tab', value);
+            setSearchParams(searchParams);
+          }}
+          className="space-y-6"
+        >
           <TabsList className="grid w-full max-w-md grid-cols-2">
             <TabsTrigger value="requests" className="gap-2">
               <HandHeart className="h-4 w-4" />
