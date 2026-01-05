@@ -150,6 +150,7 @@ export default function Auth() {
                     id="password"
                     type="password"
                     placeholder="••••••••"
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -242,6 +243,7 @@ export default function Auth() {
                     id="signup-password"
                     type="password"
                     placeholder="Min 8 characters"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -254,6 +256,7 @@ export default function Auth() {
                     id="confirm-password"
                     type="password"
                     placeholder="••••••••"
+                    autoComplete="new-password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
