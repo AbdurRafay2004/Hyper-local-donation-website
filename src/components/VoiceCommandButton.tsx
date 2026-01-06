@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Mic, MicOff } from 'lucide-react';
+import { Mic, MicOff, HelpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { speak, playStartSound, playStopSound } from '@/lib/audio';
+import { VoiceCommandHelpModal } from '@/components/modals/VoiceCommandHelpModal';
 
 // Define the interfaces for the Speech Recognition API
 interface SpeechRecognitionEvent {
@@ -42,6 +43,7 @@ declare let window: Window;
 
 export const VoiceCommandButton: React.FC = () => {
   const [isListening, setIsListening] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [recognition, setRecognition] = useState<ISpeechRecognition | null>(null);
   const navigate = useNavigate();
 
@@ -53,6 +55,7 @@ export const VoiceCommandButton: React.FC = () => {
         const helpText = "You can say: Go home, Go to profile, Go to messages, Go to my listings, I want to donate, I need help, or search for items like furniture or food.";
         speak(helpText);
         toast.info(helpText);
+        setIsHelpOpen(true);
         return;
     }
 
@@ -303,7 +306,18 @@ export const VoiceCommandButton: React.FC = () => {
   }, [recognition, isListening]);
 
   return (
-    <div className="fixed bottom-20 left-6 z-50">
+    <>
+      <div className="fixed bottom-20 left-6 z-50 flex items-center gap-2">
+        <Button
+          onClick={() => setIsHelpOpen(true)}
+          size="icon"
+          variant="secondary"
+          className="w-8 h-8 rounded-full shadow-md bg-white hover:bg-gray-100"
+          aria-label="Voice command help"
+        >
+          <HelpCircle className="w-4 h-4 text-gray-600" />
+        </Button>
+
         <Button
             onClick={toggleListening}
             size="icon"
@@ -314,6 +328,9 @@ export const VoiceCommandButton: React.FC = () => {
         >
             {isListening ? <MicOff className="w-5 h-5 text-white" /> : <Mic className="w-5 h-5 text-white" />}
         </Button>
-    </div>
+      </div>
+
+      <VoiceCommandHelpModal open={isHelpOpen} onOpenChange={setIsHelpOpen} />
+    </>
   );
 };
