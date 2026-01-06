@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CATEGORIES, ListingCategory } from '@/lib/supabase-types';
 import { toast } from 'sonner';
-import { Package, MapPin, Clock, Upload, ArrowLeft } from 'lucide-react';
+import { Package, MapPin, Clock, Upload, ArrowLeft, Loader2 } from 'lucide-react';
 
 export default function CreateListing() {
   const { user, profile } = useAuth();
@@ -176,7 +176,12 @@ export default function CreateListing() {
                   Cancel
                 </Button>
                 <Button type="submit" variant="donation" disabled={loading} className="flex-1">
-                  {loading ? 'Creating...' : 'Create Listing'}
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Creating...
+                    </>
+                  ) : 'Create Listing'}
                 </Button>
               </div>
             </form>
