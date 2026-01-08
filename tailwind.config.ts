@@ -110,7 +110,7 @@ export default {
       boxShadow: {
         "card": "0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 4px 16px -4px rgba(0, 0, 0, 0.05)",
         "card-hover": "0 8px 24px -4px rgba(0, 0, 0, 0.1), 0 16px 32px -8px rgba(0, 0, 0, 0.05)",
-        "glow-donation": "0 0 20px rgba(50, 180, 130, 0.3)",
+        "glow-donation": "0 0 20px rgba(80, 180, 130, 0.3)",
         "glow-request": "0 0 20px rgba(245, 130, 60, 0.3)",
       },
     },
