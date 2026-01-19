@@ -10,8 +10,14 @@ export default function Index() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <header className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-donation/5 to-request/5" />
-        <div className="container relative py-6">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-donation/5 to-request/5 z-0" />
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+          <div className="absolute top-0 right-1/4 w-72 h-72 bg-donation/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" style={{ animationDelay: '2s' }} />
+          <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-request/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" style={{ animationDelay: '4s' }} />
+        </div>
+        <div className="container relative py-6 z-10">
           <nav className="flex items-center justify-between mb-16">
             <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold text-primary">
               <Heart className="h-6 w-6 fill-primary" />
