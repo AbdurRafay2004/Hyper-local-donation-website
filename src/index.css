@@ -6,62 +6,62 @@
 
 @layer base {
   :root {
-    /* Core colors - warm community palette */
-    --background: 30 25% 98%;
-    --foreground: 20 20% 15%;
+    /* "Hopeful Harvest" - warm, optimistic, natural palette */
+    --background: 40 20% 98%;
+    --foreground: 30 10% 20%;
     
     --card: 0 0% 100%;
-    --card-foreground: 20 20% 15%;
+    --card-foreground: 30 10% 20%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 15%;
+    --popover-foreground: 30 10% 20%;
     
-    /* Primary - Deep teal for trust/reliability */
-    --primary: 172 66% 35%;
+    /* Primary - Warm orange for optimism/energy */
+    --primary: 30 90% 55%;
     --primary-foreground: 0 0% 100%;
     
-    /* Secondary - Warm neutral */
-    --secondary: 30 20% 94%;
-    --secondary-foreground: 20 20% 25%;
+    /* Secondary - Earthy green for growth/calm */
+    --secondary: 140 30% 94%;
+    --secondary-foreground: 140 20% 25%;
     
-    --muted: 30 15% 92%;
-    --muted-foreground: 20 10% 45%;
+    --muted: 140 20% 92%;
+    --muted-foreground: 140 10% 45%;
     
-    --accent: 172 50% 92%;
-    --accent-foreground: 172 66% 25%;
+    --accent: 30 80% 92%;
+    --accent-foreground: 30 90% 25%;
     
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 172 66% 35%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 30 90% 55%;
     
     --radius: 0.75rem;
-    
+
     /* Custom semantic colors */
-    --donation: 160 60% 45%;
-    --donation-light: 160 50% 95%;
-    --donation-foreground: 160 70% 20%;
+    --donation: 150 60% 45%;
+    --donation-light: 150 50% 95%;
+    --donation-foreground: 150 70% 20%;
     
-    --request: 25 95% 55%;
-    --request-light: 25 90% 95%;
-    --request-foreground: 25 80% 20%;
+    --request: 35 95% 55%;
+    --request-light: 35 90% 95%;
+    --request-foreground: 35 80% 20%;
     
     --urgent: 0 72% 51%;
     --urgent-light: 0 70% 95%;
     
-    --verified: 172 66% 40%;
+    --verified: 150 60% 40%;
     
     /* Sidebar */
-    --sidebar-background: 30 25% 97%;
-    --sidebar-foreground: 20 20% 25%;
-    --sidebar-primary: 172 66% 35%;
+    --sidebar-background: 140 30% 97%;
+    --sidebar-foreground: 140 20% 25%;
+    --sidebar-primary: 30 90% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 172 50% 92%;
-    --sidebar-accent-foreground: 172 66% 25%;
-    --sidebar-border: 30 20% 88%;
-    --sidebar-ring: 172 66% 35%;
+    --sidebar-accent: 30 80% 92%;
+    --sidebar-accent-foreground: 30 90% 25%;
+    --sidebar-border: 140 20% 88%;
+    --sidebar-ring: 30 90% 55%;
   }
 
   .dark {
